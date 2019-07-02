@@ -11,6 +11,7 @@ python-dateutil = "*"
 pandas = "*"
 requests = "*"
 cssselect = "*"
+flake8 = "*"
 
 [requires]
 python_version = "3.7"
