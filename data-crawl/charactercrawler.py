@@ -33,8 +33,8 @@ class CharacterCrawler(BaseCrawler):
             yield {
                 "name": self._get_name(elem),
                 "description": self._get_description(elem),
-                "image-headshot": self._get_image_headshot(elem),
-                "image-action": self._get_image_action(elem),
+                "image_headshot": self._get_image_headshot(elem),
+                "image_action": self._get_image_action(elem),
                 "copyright": self._get_copyright(tree),
             }
 

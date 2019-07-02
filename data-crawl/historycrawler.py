@@ -1,4 +1,3 @@
-from dateutil import parser
 import pandas as pd
 from basecrawler import BaseCrawler
 
@@ -63,6 +62,7 @@ class HistoryCrawler(BaseCrawler):
             orient="index",
             columns=expand_df.columns,
         )
+        result_df['release_date'] = pd.to_datetime(result_df['release_date'])
         return dataframe.drop(columns, axis=1).join(result_df)
 
     def get_data(self):
