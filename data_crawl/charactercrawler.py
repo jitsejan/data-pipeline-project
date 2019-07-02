@@ -1,4 +1,9 @@
-from basecrawler import BaseCrawler
+import os
+import sys
+
+sys.path.append(os.path.abspath(sys.path[0]) + "/../")
+
+from data_crawl.basecrawler import BaseCrawler
 import pandas as pd
 
 

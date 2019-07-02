@@ -17,7 +17,7 @@ class BaseCrawler:
 
     def get_data(self):
         """ Get the data and return dataframe """
-        raise NotImplementedError
+        raise NotImplementedError("get_data() is not implemented")
 
     def _get_copyright(self, elem):
         selector = "div.footer-main__links__legal p"

@@ -27,12 +27,7 @@ class HistoryCrawler(BaseCrawler):
 
     def _get_story(self, elem):
         selector = "div.history-tile__story p"
-        return " ".join(
-            [
-                par.text_content()
-                for par in elem.cssselect(selector)
-            ]
-        )
+        return " ".join([par.text_content() for par in elem.cssselect(selector)])
 
     def _get_page_data(self):
         """ Retrieve the data from the page """
@@ -50,9 +45,7 @@ class HistoryCrawler(BaseCrawler):
     def _clean_dataframe(self, dataframe):
         """ Clean the dataframe """
         columns = ["release_date", "platform"]
-        expand_df = dataframe[columns].apply(
-            lambda x: x.str.split("/")
-        )
+        expand_df = dataframe[columns].apply(lambda x: x.str.split("/"))
         result_df = pd.DataFrame.from_items(
             [
                 (index, zipped)
@@ -62,7 +55,7 @@ class HistoryCrawler(BaseCrawler):
             orient="index",
             columns=expand_df.columns,
         )
-        result_df['release_date'] = pd.to_datetime(result_df['release_date'])
+        result_df["release_date"] = pd.to_datetime(result_df["release_date"])
         return dataframe.drop(columns, axis=1).join(result_df)
 
     def get_data(self):
