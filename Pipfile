@@ -12,8 +12,8 @@ pandas = "*"
 requests = "*"
 cssselect = "*"
 flake8 = "*"
-nosetests = "*"
 nose = "*"
+pytest = "*"
 
 [requires]
 python_version = "3.7"
