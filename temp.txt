@@ -1,0 +1,57 @@
+
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "VisualEditor0",
+            "Effect": "Allow",
+            "Action": [
+                "iam:*",
+                "states:*",
+                "sns:*",
+                "s3:*",
+                "ssm:*",
+                "lambda:*",
+                "appsync:*",
+                "sqs:*",
+                "athena:*",
+                "events:*",
+                "glue:*"
+            ],
+            "Resource": "*"
+        }
+    ]
+}
+
+
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "VisualEditor0",
+            "Effect": "Allow",
+            "Action": [
+                "athena:GetQueryResultsStream",
+                "athena:GetNamespace",
+                "athena:GetQueryResults",
+                "athena:GetQueryExecutions",
+                "athena:ListWorkGroups",
+                "athena:GetNamedQuery",
+                "athena:GetCatalogs",
+                "athena:ListTagsForResource",
+                "athena:ListQueryExecutions",
+                "athena:ListNamedQueries",
+                "athena:GetNamespaces",
+                "athena:GetWorkGroup",
+                "athena:GetExecutionEngine",
+                "athena:GetQueryExecution",
+                "athena:GetExecutionEngines",
+                "athena:GetTables",
+                "athena:GetTable",
+                "athena:BatchGetNamedQuery",
+                "athena:BatchGetQueryExecution"
+            ],
+            "Resource": "*"
+        }
+    ]
+}

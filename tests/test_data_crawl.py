@@ -19,6 +19,7 @@ class DataCrawlTestClass(unittest.TestCase):
         self.elem = lxml.html.fromstring("<fake><element></element></fake>")
 
     def test_base_url(self):
+        """ Test the base URL of the crawler """
         expected = "https://mario.nintendo.com"
         actual = self.object_to_test.BASE_URL
 
@@ -26,17 +27,20 @@ class DataCrawlTestClass(unittest.TestCase):
 
     @mock.patch("data_crawl.basecrawler.BaseCrawler._get_copyright", autospec=True)
     def test_if_get_copyright_is_called_with_correct_types(self, mocked_method):
+        """ Test that the copyright function returns correct types """
         self.object_to_test._get_copyright(self.elem)
         (func, call_arg) = mocked_method.call_args[0]
 
         assert type(call_arg) == lxml.html.HtmlElement
 
     def test_base_class_cannot_be_inited_with_params(self):
+        """ Test that the base class does not accept parameters """
         expected = r"_get_image_from_elem\(\) missing 2 required positional arguments: \'elem\' and \'selector\'"
         with pytest.raises(TypeError, match=expected):
             self.object_to_test._get_image_from_elem()
 
     def test_base_class_no_get_data_implemented(self):
+        """ Test that the base class does not have a get_data function """
         expected = r"get_data\(\) is not implemented"
         with pytest.raises(NotImplementedError, match=expected):
             self.object_to_test.get_data()
