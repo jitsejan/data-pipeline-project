@@ -23,6 +23,15 @@ class BaseCrawler:
         selector = "div.footer-main__links__legal p"
         return self._get_text_from_elem(elem, selector)
 
+    def _get_text_from_elem(self, elem, selector):
+        """ Retrieve the text from a selector """
+        selected_list = self._get_selector(elem, selector)
+        
+        if len(selected_list) == 0:
+            return None
+        else:
+            return selected_list[0].text_content()
+
     @staticmethod
     def _get_tree_from_url(url):
         resp = requests.get(url)
@@ -34,6 +43,9 @@ class BaseCrawler:
         return dataframe
 
     @staticmethod
-    def _get_text_from_elem(elem, selector):
-        """ Retrieve the text from a selector """
-        return elem.cssselect(selector)[0].text_content()
+    def _get_selector(elem, selector):
+        """ Retrieve the selector from an element """
+        try:
+            return elem.cssselect(selector)
+        except ValueError:
+            return []

@@ -37,7 +37,7 @@ Launching subshell in virtual environment…
 ```
 
 ## Installing libraries
-Note that `pipenv install` should be used rather than `pip` or `pip3` install.
+Note that `pipenv install` should be used rather than `pip` or `pip3` install when using `pipenv`.
 
 ```bash
 $ pipenv install lxml
@@ -52,3 +52,19 @@ Updated Pipfile.lock (b70304)!
 Installing dependencies from Pipfile.lock (b70304)…
   🐍   ▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉ 1/1 — 00:00:01
 ```
+
+## Testing code
+The following will run the tests and the coverage check simultaneously. 
+
+```bash
+$ pytest --cov=. -v 
+```
+
+Convert the results to HTML for better visiblity on the coverage results.
+
+```bash
+$ coverage html
+$ open htmlcov/index.hml
+```
+
+
