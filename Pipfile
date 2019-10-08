@@ -11,6 +11,12 @@ python-dateutil = "*"
 pandas = "*"
 requests = "*"
 cssselect = "*"
+flake8 = "*"
+nose = "*"
+pytest = "*"
+kafka-python = "*"
+pytest-cov = "*"
+pytest-mock = "*"
 
 [requires]
 python_version = "3.7"
