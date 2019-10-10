@@ -49,7 +49,7 @@ class TestBaseCrawler:
 
         assert expected == actual
 
-    def test_if_get_copyright_is_returns_correct_value(self, basecrawler, elem):
+    def test_if_get_copyright_is_returns_correct_value(self, basecrawler):
         """ Test that the copyright function returns correct value """
         html_string = '<div class="footer-main__links__legal"><p>Test copyright</p>No copyright</div>'
         elem = lxml.html.fromstring(html_string)
@@ -67,9 +67,6 @@ class TestBaseCrawler:
 
     def test_if_get_text_from_elem_returns_correct_value(self, basecrawler, elem):
         """ Test that the copyright function returns correct value """
-        html_string = '<div class="correct-identifier">Lorum ipsum</div>'
-        elem = lxml.html.fromstring(html_string)
-
         actual = basecrawler._get_text_from_elem(elem, "div.correct-identifier")
         expected = "Lorum ipsum"
 
@@ -77,9 +74,6 @@ class TestBaseCrawler:
 
     def test_if_get_text_from_elem_returns_none_for_no_match(self, basecrawler, elem):
         """ Test that the copyright function returns correct value """
-        html_string = '<div class="correct-identifier">Lorum ipsum</div>'
-        elem = lxml.html.fromstring(html_string)
-
         actual = basecrawler._get_text_from_elem(elem, "div.incorrect-identifier")
         expected = None
 
@@ -87,9 +81,6 @@ class TestBaseCrawler:
 
     def test_if__get_selector_returns_empty_list_for_no_match(self, basecrawler, elem):
         """ Test that the get selector function returns an empty list for no match """
-        html_string = '<div class="correct-identifier">Lorum ipsum</div>'
-        elem = lxml.html.fromstring(html_string)
-
         actual = basecrawler._get_selector(elem, "div.incorrect-identifier")
         expected = []
 

@@ -25,5 +25,5 @@ def dataframe():
 
 @pytest.fixture(scope="session")
 def elem():
-    return lxml.html.fromstring("<fake><element></element></fake>")
+    return lxml.html.fromstring('<div class="correct-identifier">Lorum ipsum</div>')
 
