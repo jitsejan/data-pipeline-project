@@ -1,5 +1,6 @@
 import lxml.html
 import os
+import pandas as pd
 import pytest
 import sys
 sys.path.append(os.path.abspath(sys.path[0]) + "/../")
@@ -15,6 +16,11 @@ def basecrawler():
 @pytest.fixture(scope="session")
 def charactercrawler():
     return CharacterCrawler()
+
+
+@pytest.fixture(scope="session")
+def dataframe():
+    return pd.DataFrame()
 
 
 @pytest.fixture(scope="session")

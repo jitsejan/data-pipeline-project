@@ -1,5 +1,6 @@
 import lxml.html
 import os
+import pandas as pd
 import pytest
 import sys
 
@@ -91,5 +92,19 @@ class TestBaseCrawler:
 
         actual = basecrawler._get_selector(elem, "div.incorrect-identifier")
         expected = []
+
+        assert expected == actual
+
+    def test_if__get_tree_from_url_returns_lxml_elem(self, basecrawler, elem):
+        """ Test that the _get_tree_from_url returns an LXML element """
+        actual = type(basecrawler._get_tree_from_url(basecrawler.BASE_URL))
+        expected = lxml.html.HtmlElement
+
+        assert expected == actual
+
+    def test_if__clean_dataframe_returns_dataframe(self, basecrawler, dataframe):
+        """ Test that the clean_dataframe returns a dataframe """
+        actual = type(basecrawler._clean_dataframe(dataframe))
+        expected = pd.DataFrame
 
         assert expected == actual
