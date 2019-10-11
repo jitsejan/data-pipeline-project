@@ -1,5 +1,5 @@
 import pandas as pd
-from basecrawler import BaseCrawler
+from data_crawl.basecrawler import BaseCrawler
 
 
 class HistoryCrawler(BaseCrawler):

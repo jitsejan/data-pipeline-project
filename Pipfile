@@ -17,6 +17,7 @@ pytest = "*"
 kafka-python = "*"
 pytest-cov = "*"
 pytest-mock = "*"
+minio = "*"
 
 [requires]
 python_version = "3.7"
