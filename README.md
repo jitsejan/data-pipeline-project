@@ -68,3 +68,6 @@ $ open htmlcov/index.hml
 ```
 
 
+## Minio
+
+https://docs.min.io/docs/python-client-api-reference.html

@@ -45,7 +45,4 @@ class BaseCrawler:
     @staticmethod
     def _get_selector(elem, selector):
         """ Retrieve the selector from an element """
-        try:
-            return elem.cssselect(selector)
-        except ValueError:
-            return []
+        return elem.cssselect(selector)
