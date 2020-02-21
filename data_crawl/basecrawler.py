@@ -1,3 +1,4 @@
+""" data_crawl/basecrawler.py """
 import lxml.html
 import requests
 
@@ -26,11 +27,11 @@ class BaseCrawler:
     def _get_text_from_elem(self, elem, selector):
         """ Retrieve the text from a selector """
         selected_list = self._get_selector(elem, selector)
-        
-        if len(selected_list) == 0:
-            return None
-        else:
+
+        if selected_list:
             return selected_list[0].text_content()
+
+        return None
 
     @staticmethod
     def _get_tree_from_url(url):
