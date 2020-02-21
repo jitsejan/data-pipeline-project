@@ -40,3 +40,6 @@ class EventGenerator:
             with open(self.output_file, "w") as outputfile:
                 for event in self._generate_events():
                     outputfile.write(f"{json.dumps(event)}\n")
+        elif self.output_type == "json":
+            with open(f"{self.output_file}.json", "w") as outputfile:
+                outputfile.write(f"{json.dumps(list(self._generate_events()), )}\n")
