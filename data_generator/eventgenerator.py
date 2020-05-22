@@ -9,7 +9,7 @@ class EventGenerator:
     MAX_LIVES = 99
     CHARACTERS = ["Mario", "Luigi", "Peach", "Toad"]
 
-    def __init__(self, num_events, output_type, output_file, start_date, end_date):
+    def __init__(self, num_events, output_type, start_date, end_date, output_file=None):
         """ Initialize the EventGenerator """
         self.faker = Faker()
         self.num_events = num_events
@@ -40,3 +40,5 @@ class EventGenerator:
             with open(self.output_file, "w") as outputfile:
                 for event in self._generate_events():
                     outputfile.write(f"{json.dumps(event)}\n")
+        elif self.output_type == "list":
+            return list(self._generate_events())
