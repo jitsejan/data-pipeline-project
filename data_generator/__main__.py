@@ -1,3 +1,4 @@
+""" __main__.py """
 from eventgenerator import EventGenerator
 
 import argparse
@@ -6,7 +7,7 @@ from dateutil.relativedelta import relativedelta
 
 DATE_END = datetime.datetime.now()
 DATE_START = DATE_END + relativedelta(months=-1)
-OUTPUT_CHOICES = ["jl"]
+OUTPUT_CHOICES = ["jl", "list"]
 
 
 def _get_parser():
