@@ -1,4 +1,5 @@
-from faker import Faker
+from mimesis.random import Random
+from mimesis import Datetime
 import json
 
 
@@ -11,7 +12,8 @@ class EventGenerator:
 
     def __init__(self, num_events, output_type, start_date, end_date, output_file=None):
         """ Initialize the EventGenerator """
-        self.faker = Faker()
+        self.datetime = Datetime()
+        self.random = Random()
         self.num_events = num_events
         self.output_type = output_type
         self.output_file = output_file
@@ -20,18 +22,16 @@ class EventGenerator:
 
     def _get_date_between(self, date_start, date_end):
         """ Get a date between start and end date """
-        return self.faker.date_between_dates(date_start=date_start, date_end=date_end)
+        return self.random.choice(self.datetime.bulk_create_datetimes(self.start_date, self.end_date, days=1))
 
     def _generate_events(self):
         """ Generate the metric data """
         for _ in range(self.num_events):
             yield {
-                "character": self.faker.random_element(self.CHARACTERS),
-                "world": self.faker.random_int(min=1, max=8, step=1),
-                "level": self.faker.random_int(min=1, max=8, step=1),
-                "lives": self.faker.random_int(
-                    min=self.MIN_LIVES, max=self.MAX_LIVES, step=1
-                ),
+                "character": self.random.choice(self.CHARACTERS),
+                "world": self.random.randint(1, 8),
+                "level": self.random.randint(1, 4),
+                "lives": self.random.randint(self.MIN_LIVES, self.MAX_LIVES),
                 "time": str(self._get_date_between(self.start_date, self.end_date)),
             }
 
