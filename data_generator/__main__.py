@@ -18,7 +18,7 @@ def _get_parser():
     """
     parser = argparse.ArgumentParser(description="Create the events")
     parser.add_argument(
-        "-n", "--num-events", type=int, default=10, choices=range(1, 1000)
+        "-n", "--num-events", type=int, default=10
     )
     parser.add_argument(
         "-o", "--output", nargs="?", choices=OUTPUT_CHOICES, required=True
