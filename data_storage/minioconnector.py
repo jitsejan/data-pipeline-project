@@ -2,7 +2,7 @@ import boto3
 from botocore.client import Config
 from io import StringIO
 from minio import Minio
-from minio.error import ResponseError
+from minio.error import InvalidResponseError
 import os
 
 class MinioConnector:

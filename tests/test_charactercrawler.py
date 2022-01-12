@@ -1,7 +1,7 @@
 import data_crawl
 
 class TestCharacterCrawler:
-    """ Defines the tests for the base class for the CharacterCrawler """
+    """ Defines the tests for the CharacterCrawler """
 
     def test_derived_class_get_data_is_called_twice(self, mocker, charactercrawler):
         """ Test if the derived class get data function is called twice """

@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "data-pipeline-project"
+version = "0.1.0"
+description = "Project to play with Python, Spark, Minio and Streaming."
+authors = ["Jitse-Jan <code@jitsejan.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+lxml = "^4.7.1"
+requests = "^2.27.1"
+pandas = "^1.3.5"
+boto3 = "^1.20.33"
+minio = "^7.1.2"
+cssselect = "^1.1.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.2.5"
+pytest-mock = "^3.6.1"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
