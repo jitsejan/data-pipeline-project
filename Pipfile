@@ -7,7 +7,7 @@ verify_ssl = true
 ipykernel = "*"
 
 [packages]
-lxml = "*"
+lxml = ">=4.6.5"
 python-dateutil = "*"
 pandas = "*"
 requests = "*"
@@ -21,6 +21,9 @@ pytest-mock = "*"
 minio = "*"
 faker = "*"
 mimesis = "*"
+urllib3 = ">=1.26.5"
+py = ">=1.10.0"
+Pygments = ">=2.7.4"
 
 [requires]
 python_version = "3.7"
