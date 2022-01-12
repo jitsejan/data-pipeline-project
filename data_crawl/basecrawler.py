@@ -1,12 +1,19 @@
 """ data_crawl/basecrawler.py """
 import lxml.html
 import requests
+from selenium import webdriver
+from selenium.webdriver.common.by import By
 
 
 class BaseCrawler:
     """ Implements the BaseCrawler class """
 
     BASE_URL = "https://mario.nintendo.com"
+    DRIVER_PATH = "/Users/jitsejan/.wdm/drivers/geckodriver/macos/v0.30.0/geckodriver"
+
+
+    def __init__(self):
+        self._browser = webdriver.Firefox(executable_path=self.DRIVER_PATH)  
 
     def _get_page_data(self):
         """ Retrieve the data from the page """
@@ -26,12 +33,13 @@ class BaseCrawler:
 
     def _get_text_from_elem(self, elem, selector):
         """ Retrieve the text from a selector """
-        selected_list = self._get_selector(elem, selector)
+        selected_text = self._get_selector(elem, selector)
+        print(dir(selected_text))
+        return selected_text.text if selected_text else None
 
-        if selected_list:
-            return selected_list[0].text_content()
-
-        return None
+    @property
+    def browser(self):
+        return self._browser
 
     @staticmethod
     def _get_tree_from_url(url):
@@ -46,4 +54,4 @@ class BaseCrawler:
     @staticmethod
     def _get_selector(elem, selector):
         """ Retrieve the selector from an element """
-        return elem.cssselect(selector)
+        return elem.find_element(By.CSS_SELECTOR, selector)

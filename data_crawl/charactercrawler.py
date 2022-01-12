@@ -1,5 +1,8 @@
 import os
 import sys
+import lxml
+from selenium.webdriver.common.by import By
+
 
 sys.path.append(os.path.abspath(sys.path[0]) + "/../")
 
@@ -12,15 +15,16 @@ class CharacterCrawler(BaseCrawler):
 
     def __init__(self):
         """ Initialize the class """
+        super(CharacterCrawler, self).__init__()
         self.url = f"{self.BASE_URL}/characters/"
-        self.list_identifier = "ul.characters li.characters__item"
+        self.list_identifier = "div[class='vp-animate']"
 
     def _get_name(self, elem):
-        selector = "h2.characters__name"
+        selector = "h2.txt-color-inherit"
         return self._get_text_from_elem(elem, selector)
 
     def _get_description(self, elem):
-        selector = "p.characters__description"
+        selector = "div.character-accordion-module--CharacterAccordion__description--"
         return self._get_text_from_elem(elem, selector)
 
     def _get_image_headshot(self, elem):
@@ -33,15 +37,17 @@ class CharacterCrawler(BaseCrawler):
 
     def _get_page_data(self):
         """ Retrieve the data from the page """
-        tree = self._get_tree_from_url(self.url)
-        for elem in tree.cssselect(self.list_identifier):
+        self.browser.get(self.url)
+        for elem in self.browser.find_elements(By.CSS_SELECTOR, "div.vp-slide"):
             yield {
-                "name": self._get_name(elem),
+                "name": elem.find_element(By.TAG_NAME, "h2").get_attribute("textContent").strip(),
                 "description": self._get_description(elem),
-                "image_headshot": self._get_image_headshot(elem),
-                "image_action": self._get_image_action(elem),
-                "copyright": self._get_copyright(tree),
+                # "image_headshot": self._get_image_headshot(elem),
+                # "image_action": self._get_image_action(elem),
+                # "copyright": self._get_copyright(tree),
             }
+
+        self.browser.quit()
 
     def get_data(self):
         """ Get the data and return dataframe """

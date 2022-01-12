@@ -13,10 +13,11 @@ def main():
 
     # Write character data
     characters = ccrawler.get_data()
-    mc.write_dataframe_to_csv('characters.csv', characters)
-    # Write history data
-    history = hcrawler.get_data()
-    mc.write_dataframe_to_csv('history.csv', history)
+    print(characters)
+    # mc.write_dataframe_to_csv('characters.csv', characters)
+    # # Write history data
+    # history = hcrawler.get_data()
+    # mc.write_dataframe_to_csv('history.csv', history)
 
 if __name__ == "__main__":
     main()

@@ -71,3 +71,10 @@ $ open htmlcov/index.hml
 ## Minio
 
 https://docs.min.io/docs/python-client-api-reference.html
+
+
+## NEEDS UPDATE [2022-01-12]
+Notes to revive project
+
+- Added MINIO_SERVER to ~/.zshrc
+- Created `datalake` bucket through the Minio interface
