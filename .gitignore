@@ -2,3 +2,4 @@
 .idea
 htmlcov
 __pycache__
+output.csv

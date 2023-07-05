@@ -1,19 +1,19 @@
 from mimesis.random import Random
 from mimesis import Datetime
 import json
-
+import csv
 
 class EventGenerator:
     """ Defines the EventGenerator """
 
     MIN_LIVES = 1
     MAX_LIVES = 99
-    CHARACTERS = ["Mario", "Luigi", "Peach", "Toad"]
 
-    def __init__(self, num_events, output_type, start_date, end_date, output_file=None):
+    def __init__(self, characters: list, num_events: int, output_type, start_date, end_date, output_file=None):
         """ Initialize the EventGenerator """
         self.datetime = Datetime()
         self.random = Random()
+        self.characters = characters
         self.num_events = num_events
         self.output_type = output_type
         self.output_file = output_file
@@ -28,7 +28,7 @@ class EventGenerator:
         """ Generate the metric data """
         for _ in range(self.num_events):
             yield {
-                "character": self.random.choice(self.CHARACTERS),
+                "character": self.random.choice(self.characters),
                 "world": self.random.randint(1, 8),
                 "level": self.random.randint(1, 4),
                 "lives": self.random.randint(self.MIN_LIVES, self.MAX_LIVES),
@@ -36,9 +36,16 @@ class EventGenerator:
             }
 
     def store_events(self):
+        events = list(self._generate_events())
         if self.output_type == "jl":
             with open(self.output_file, "w") as outputfile:
-                for event in self._generate_events():
+                for event in events:
                     outputfile.write(f"{json.dumps(event)}\n")
+        elif self.output_type == "csv":
+            with open(self.output_file, "w") as outputfile:
+                wr = csv.writer(outputfile, delimiter=";")
+                wr.writerow(events[0].keys())
+                for event in events:
+                    wr.writerow(e for e in event.values())
         elif self.output_type == "list":
-            return list(self._generate_events())
+            return events
